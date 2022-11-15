@@ -1,10 +1,6 @@
-import tables
 import scipy.sparse
 import scipy.io
-from sklearn.decomposition import PCA
 import numpy as np
-import pdb
-import os
 from scipy import * 
 
 

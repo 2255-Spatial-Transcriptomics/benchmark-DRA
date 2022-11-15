@@ -3,7 +3,6 @@ import os
 from opts import *
 import Util
 import numpy as np
-import scipy.sparse
 from sklearn.metrics.cluster import normalized_mutual_info_score as nmi
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
@@ -540,6 +539,14 @@ if __name__=='__main__':
     print ("sampler: {}".format(FLAGS.sampler))    
 
 
+    ###
+    # There is a warning 
+    # 2022-11-15 13:40:59.839013: I tensorflow/core/platform/cpu_feature_guard.cc:137] 
+    # Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+    # 
+    # Refer to this post:
+    # https://stackoverflow.com/questions/47068709/your-cpu-supports-instructions-that-this-tensorflow-binary-was-not-compiled-to-u
+
     def main(_):
 
         run_config = tf.ConfigProto()
@@ -579,6 +586,7 @@ if __name__=='__main__':
             if FLAGS.train:
                 if FLAGS.model == 'dra':
                     test_dra.train_cluster()
+                    # test_dra.eval_cluster_on_test()
                     
 
     tf.app.run()
